@@ -1,8 +1,11 @@
 import React, { Component } from "react";
+import Pet from "./components/Pet";
+import FormUser from "./components/FormUser";
 
 class App extends Component {
   state = {
     count: 0,
+    fName: "",
   };
 
   handShake() {
@@ -24,6 +27,12 @@ class App extends Component {
     console.log("this.state.count", this.state.count);
   };
 
+  handlerfName = (event) => {
+    this.setState({
+      fName: event.target.value,
+    });
+  };
+
   render() {
     const name = "Dairo";
     const getFullName = () => `${name} ${this.lastname}`;
@@ -36,8 +45,16 @@ class App extends Component {
     return (
       <main>
         <h1>Hello From App Class Component</h1>
+        <Pet />
         <h4>{getFullName()}</h4>
         <p>{this.handShake()}</p>
+        <hr />
+        <h3>FNAME: {this.state.fName}</h3>
+        <input
+          type="text"
+          value={this.state.fName}
+          onChange={this.handlerfName}
+        />
         <hr />
         <h2>Counter section</h2>
 
@@ -53,6 +70,14 @@ class App extends Component {
             por ende, va a mostrar cada cambio */}
         <p>Counter State: {this.state.count}</p>
         <button onClick={() => this.addCounter()}>Add Counter State</button>
+
+        <hr />
+        <h2>FormUser section</h2>
+        <FormUser />
+        <br />
+        <br />
+        <br />
+        <br />
       </main>
     );
   }
